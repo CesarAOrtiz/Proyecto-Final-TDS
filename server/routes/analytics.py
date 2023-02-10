@@ -1,6 +1,6 @@
 from typing import List
 from fastapi import APIRouter, Query
-from ..utils.process_tweet import get_sentiment
+from utils.process_tweet import get_sentiment
 
 router = APIRouter()
 

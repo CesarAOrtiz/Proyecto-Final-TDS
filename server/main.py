@@ -6,8 +6,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.requests import Request
-from .utils import ErrorResponse
-from .router import router
+from utils import ErrorResponse
+from router import router
 
 # import nltk
 # from textblob import download_corpora
@@ -44,5 +44,5 @@ app.add_middleware(
 
 app.include_router(router)
 
-app.mount("/", StaticFiles(directory=path.abspath("./public/build").replace("\\",
+app.mount("/", StaticFiles(directory=path.abspath("../client/build").replace("\\",
           "/"), html=True), name="app")
