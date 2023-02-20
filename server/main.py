@@ -8,12 +8,9 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.requests import Request
 from utils import ErrorResponse
 from router import router
+import nltk
 
-# import nltk
-# from textblob import download_corpora
-
-# nltk.download('vader_lexicon')
-# download_corpora.download_lite()
+nltk.download('vader_lexicon')
 
 
 app = FastAPI()
