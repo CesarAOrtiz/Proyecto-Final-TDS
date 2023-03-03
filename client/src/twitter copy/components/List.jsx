@@ -13,7 +13,7 @@ import AlertTitle from "@mui/material/AlertTitle";
 import TwitterIcon from "@mui/icons-material/Twitter";
 //
 import Grid from "@mui/material/Grid";
-import InfoStack from "../components/InfoStack.jsx";
+import InfoStack from "./InfoStack.jsx";
 
 const setimentColor = {
   "positive": "#1cc88a",
