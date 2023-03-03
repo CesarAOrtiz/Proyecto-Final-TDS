@@ -22,7 +22,7 @@ export const Search = ({ data, ...props }) => {
   React.useEffect(() => {
     setloading(true);
     const countWords = data
-      .map((item) => removeStopwords(item.tweet.text.toLowerCase().split(" "), spa))
+      .map((item) => removeStopwords(item.text.toLowerCase().split(" "), spa))
       .flat()
       .reduce((acc, word) => {
         if (word.length < 1) return acc;

@@ -40,17 +40,16 @@ export const List = ({ data, loading, error, ...props }) => {
   return (
     <>
       <MuiList sx={{ width: "100%", bgcolor: "background.paper" }}>
-        {data.map((d) => (
-          <React.Fragment key={d.tweet.id}>
+        {data.map((d, i) => (
+          <React.Fragment key={i}>
             <MuiListItem alignItems="flex-start">
               <MuiListItemAvatar>
-                <Avatar style={{ background: setimentColor[d.tweet.sentiment] }}>
+                <Avatar style={{ background: setimentColor[d.sentiment] }}>
                   <TwitterIcon />
                 </Avatar>
               </MuiListItemAvatar>
 
               <MuiListItemText
-                primary={d.user}
                 secondary={
                   <Typography
                     sx={{ display: "inline" }}
@@ -58,10 +57,10 @@ export const List = ({ data, loading, error, ...props }) => {
                     variant="body2"
                     color="text.primary"
                   >
-                    {d.tweet.text}
+                    {d.text}
                   </Typography>
                 }
-                title={d.tweet.text}
+                title={d.text}
               />
             </MuiListItem>
 

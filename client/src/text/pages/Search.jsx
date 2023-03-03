@@ -11,7 +11,7 @@ export const Search = () => {
   const [data, setData] = React.useState([]);
   const [loading, setloading] = React.useState(false);
   const [error, setError] = React.useState("");
-  console.log(data);
+
   return (
     <>
       <SearchArea
@@ -41,7 +41,7 @@ export const Search = () => {
         rows={10}
       />
 
-      {/* <Box
+      <Box
         style={{
           flexGrow: 1,
           display: "flex",
@@ -54,7 +54,7 @@ export const Search = () => {
         <Charts data={data} />
       </Box>
 
-      <List data={data} loading={loading} error={error} /> */}
+      <List data={data} loading={loading} error={error} />
     </>
   );
 };

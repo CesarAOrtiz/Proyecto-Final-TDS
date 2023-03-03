@@ -67,9 +67,9 @@ export const Search = ({ data, ...props }) => {
                 {
                   data: data.reduce(
                     (acc, cur) => {
-                      acc[0] += cur.tweet.sentiment === "positive" ? 1 : 0;
-                      acc[1] += cur.tweet.sentiment === "neutral" ? 1 : 0;
-                      acc[2] += cur.tweet.sentiment === "negative" ? 1 : 0;
+                      acc[0] += cur.sentiment === "positive" ? 1 : 0;
+                      acc[1] += cur.sentiment === "neutral" ? 1 : 0;
+                      acc[2] += cur.sentiment === "negative" ? 1 : 0;
                       return acc;
                     },
                     [0, 0, 0],
