@@ -10,7 +10,7 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import MessageIcon from "@mui/icons-material/Message";
 
 const setimentColor = {
   "positive": "#1cc88a",
@@ -45,7 +45,7 @@ export const List = ({ data, loading, error, ...props }) => {
             <MuiListItem alignItems="flex-start">
               <MuiListItemAvatar>
                 <Avatar style={{ background: setimentColor[d.sentiment] }}>
-                  <TwitterIcon />
+                  <MessageIcon />
                 </Avatar>
               </MuiListItemAvatar>
 
