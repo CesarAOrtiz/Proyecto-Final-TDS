@@ -17,6 +17,8 @@ export const Search = () => {
       <SearchArea
         onSubmit={(e) => {
           if (!e) return;
+          console.log(e);
+          return;
           setloading(true);
           setError("");
           fetch(`${API_URL}/analytics?query=${e}`)

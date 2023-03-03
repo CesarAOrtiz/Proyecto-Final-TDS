@@ -54,6 +54,7 @@ export const SearchBar = ({ onSubmit, ...props }) => {
 
 export const SearchArea = ({ onSubmit, ...props }) => {
   const [query, setQuery] = useState("");
+
   return (
     <>
       <Bar
@@ -61,6 +62,7 @@ export const SearchArea = ({ onSubmit, ...props }) => {
           e.preventDefault();
           onSubmit(query);
         }}
+        style={{ flexDirection: "column" }}
       >
         <StyledInputBase
           placeholder="Search"
@@ -72,11 +74,11 @@ export const SearchArea = ({ onSubmit, ...props }) => {
           onChange={(e) => setQuery(e.target.value)}
           {...props}
         />
+        <Button type="submit" variant="contained">
+          <SearchIcon />
+          <Typography sx={{ display: { sm: "block", xs: "none" } }}>Search</Typography>
+        </Button>
       </Bar>
-      <Button type="submit" variant="contained">
-        <SearchIcon />
-        <Typography sx={{ display: { sm: "block", xs: "none" } }}>Search</Typography>
-      </Button>
     </>
   );
 };
