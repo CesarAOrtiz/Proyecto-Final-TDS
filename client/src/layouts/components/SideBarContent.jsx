@@ -6,7 +6,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 // import TroubleshootIcon from "@mui/icons-material/Troubleshoot";
 import TwitterIcon from "@mui/icons-material/Twitter";
-// import FacebookIcon from "@mui/icons-material/Facebook";
+import MessageIcon from "@mui/icons-material/Message";
 import { useAuth } from "../../auth/contexts/AuthContext";
 import Item from "./Item";
 
@@ -23,12 +23,12 @@ const defaultRoutes = [
     href: "/twitter",
     Icon: TwitterIcon,
   },
-  // {
-  //   path: "",
-  //   name: "Facebook",
-  //   href: "/facebook",
-  //   Icon: FacebookIcon,
-  // },
+  {
+    path: "",
+    name: "Texto",
+    href: "/text",
+    Icon: MessageIcon,
+  },
   {
     path: "",
     name: "Usuarios",

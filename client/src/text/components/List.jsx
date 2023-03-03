@@ -11,9 +11,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import TwitterIcon from "@mui/icons-material/Twitter";
-//
-import Grid from "@mui/material/Grid";
-import InfoStack from "./InfoStack.jsx";
 
 const setimentColor = {
   "positive": "#1cc88a",
@@ -45,37 +42,7 @@ export const List = ({ data, loading, error, ...props }) => {
       <MuiList sx={{ width: "100%", bgcolor: "background.paper" }}>
         {data.map((d) => (
           <React.Fragment key={d.tweet.id}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <MuiListItem alignItems="flex-start">
-                  <MuiListItemAvatar>
-                    <Avatar style={{ background: setimentColor[d.tweet.sentiment] }}>
-                      <TwitterIcon />
-                    </Avatar>
-                  </MuiListItemAvatar>
-                  <MuiListItemText
-                    primary={d.user}
-                    secondary={
-                      <Typography
-                        sx={{ display: "inline" }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
-                        {d.tweet.text}
-                      </Typography>
-                    }
-                  />
-                </MuiListItem>
-              </Grid>
-
-              <Grid item xs={12}>
-                <InfoStack tweet={d.tweet} />
-              </Grid>
-            </Grid>
-            <Divider />
-            {/** */}
-            {/* <MuiListItem alignItems="flex-start">
+            <MuiListItem alignItems="flex-start">
               <MuiListItemAvatar>
                 <Avatar style={{ background: setimentColor[d.tweet.sentiment] }}>
                   <TwitterIcon />
@@ -96,7 +63,7 @@ export const List = ({ data, loading, error, ...props }) => {
                 }
                 title={d.tweet.text}
               />
-            </MuiListItem> */}
+            </MuiListItem>
 
             <Divider variant="inset" />
           </React.Fragment>

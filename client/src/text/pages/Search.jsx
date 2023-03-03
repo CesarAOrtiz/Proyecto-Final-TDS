@@ -1,6 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import SearchBar from "../../components/SearchBar";
+import { SearchArea } from "../../components/SearchBar";
 import List from "../components/List";
 import WordCloud from "../components/WordCloud";
 import Charts from "../components/Charts";
@@ -14,12 +14,12 @@ export const Search = () => {
 
   return (
     <>
-      <SearchBar
+      <SearchArea
         onSubmit={(e) => {
           if (!e) return;
           setloading(true);
           setError("");
-          fetch(`${API_URL}/twitter?query=${e}`)
+          fetch(`${API_URL}/analytics?query=${e}`)
             .then((res) => res.json())
             .then((res) => {
               if (!Array.isArray(res)) {
@@ -31,6 +31,8 @@ export const Search = () => {
             .catch(setError)
             .finally(() => setloading(false));
         }}
+        multiline={true}
+        rows={10}
       />
 
       <Box

@@ -3,7 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import { Search } from "./pages";
 
 const routes = {
-  path: "/twitter",
+  path: "/text",
   element: <AuthRouth component={() => <MainLayout path={"/twitter"} />} />,
   children: [
     {

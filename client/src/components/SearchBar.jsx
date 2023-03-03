@@ -41,12 +41,42 @@ export const SearchBar = ({ onSubmit, ...props }) => {
           style={{ flexGrow: 1 }}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          {...props}
         />
         <Button type="submit" variant="contained">
           <SearchIcon />
           <Typography sx={{ display: { sm: "block", xs: "none" } }}>Search</Typography>
         </Button>
       </Bar>
+    </>
+  );
+};
+
+export const SearchArea = ({ onSubmit, ...props }) => {
+  const [query, setQuery] = useState("");
+  return (
+    <>
+      <Bar
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit(query);
+        }}
+      >
+        <StyledInputBase
+          placeholder="Search"
+          type="search"
+          variant="outlined"
+          size="small"
+          style={{ flexGrow: 1 }}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          {...props}
+        />
+      </Bar>
+      <Button type="submit" variant="contained">
+        <SearchIcon />
+        <Typography sx={{ display: { sm: "block", xs: "none" } }}>Search</Typography>
+      </Button>
     </>
   );
 };
