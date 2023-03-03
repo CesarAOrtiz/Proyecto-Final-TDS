@@ -11,17 +11,21 @@ export const Search = () => {
   const [data, setData] = React.useState([]);
   const [loading, setloading] = React.useState(false);
   const [error, setError] = React.useState("");
-
+  console.log(data);
   return (
     <>
       <SearchArea
         onSubmit={(e) => {
           if (!e) return;
-          console.log(e);
-          return;
+          const inputs = e
+            .split("\n")
+            .map((e) => e.trim())
+            .filter((e) => e.length > 0);
+          const params = new URLSearchParams(inputs.map((e) => ["text", e]));
+          const query = params.toString();
           setloading(true);
           setError("");
-          fetch(`${API_URL}/analytics?query=${e}`)
+          fetch(`${API_URL}/analytics?${query}`)
             .then((res) => res.json())
             .then((res) => {
               if (!Array.isArray(res)) {
@@ -37,7 +41,7 @@ export const Search = () => {
         rows={10}
       />
 
-      <Box
+      {/* <Box
         style={{
           flexGrow: 1,
           display: "flex",
@@ -50,7 +54,7 @@ export const Search = () => {
         <Charts data={data} />
       </Box>
 
-      <List data={data} loading={loading} error={error} />
+      <List data={data} loading={loading} error={error} /> */}
     </>
   );
 };
