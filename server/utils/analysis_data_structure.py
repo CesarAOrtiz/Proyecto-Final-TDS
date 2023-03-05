@@ -1,52 +1,33 @@
 from dataclasses import dataclass
-from abc import ABC, abstractmethod
+from typing import List
 
 
 @dataclass
 class Analysis:
     """
-    Clase de datos que representa una oración y su análisis de sentimiento.
+    A data class representing the sentiment analysis of a sentence.
 
-    Atributos:
-        sentiment (str): Una cadena que indica el sentimiento de la oración ('positive', 'negative' o 'neutral').
-        score (float): Una medida de la intensidad del sentimiento, entre -1 y 1.
-        polarity (float): Una medida de la polaridad del texto, entre -1 y 1.
-        subjectivity (float): Una medida de la subjetividad del texto, entre 0 y 1.
+    Attributes:
+        sentiment (str): The sentiment of the sentence.
+        score (float): The sentiment score of the sentence.
+        polarity (float): The polarity of the sentence.
+        subjectivity (float): The subjectivity of the sentence.
     """
     sentiment: str
     score: float
     polarity: float
     subjectivity: float
-    # text: str
-    # text (str): La oración original.
 
 
 @dataclass
 class Sentence(Analysis):
-    """Sentence class that holds the sentence and its sentiment"""
+    """
+    A data class representing a sentence and its sentiment analysis.
+
+    Attributes:
+        text (str): The original sentence text.
+        keywords (List[str]): The extracted keywords from the sentence.
+    """
     text: str
+    keywords: List[str]
     # word_counts: dict
-
-
-class SentimentAnalyzer(ABC):
-    """
-    Interfaz que define los métodos que deben implementarse para realizar un análisis de sentimiento.
-    """
-
-    @abstractmethod
-    def preprocess(self, text: str) -> str:
-        pass
-
-    @abstractmethod
-    def analyze(self, text: str) -> Analysis:
-        pass
-
-
-class KeywordExtractor(ABC):
-    """
-    Interfaz que define los métodos que deben implementarse para extraer palabras clave.
-    """
-
-    @abstractmethod
-    def extract(self, text: str) -> list:
-        pass

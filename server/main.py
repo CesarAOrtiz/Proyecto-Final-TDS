@@ -8,32 +8,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.requests import Request
 from utils import ErrorResponse
 from router import router
-import nltk
-
-# env/nltk_data
-# nltk.download('punkt', download_dir='env/nltk_data')
-# nltk.download('stopwords', download_dir='env/nltk_data')
-# nltk.download('vader_lexicon', download_dir='env/nltk_data')
-# nltk_data
-# nltk.download('punkt', download_dir='nltk_data')
-# nltk.download('stopwords', download_dir='nltk_data')
-# nltk.download('vader_lexicon', download_dir='nltk_data')
-
-# if not path.exists('./nltk_data/sentiment/vader_lexicon.zip'):
-#     nltk.download('vader_lexicon', './nltk_data')
-# if not path.exists('./nltk_data/corpora/stopwords.zip'):
-#     nltk.download('stopwords', './nltk_data')
-# if not path.exists('./nltk_data/tokenizers/punkt.zip'):
-#     nltk.download('punkt', './nltk_data')
-
-# if not path.exists('./env/share/nltk_data/sentiment/vader_lexicon.zip'):
-#     nltk.download('vader_lexicon', 'env/nltk_data')
-
-# if not path.exists('./env/share/nltk_data/corpora/stopwords.zip'):
-#     nltk.download('stopwords', './nltk_data')
-
-# if not path.exists('./env/share/nltk_data/tokenizers/punkt.zip'):
-#     nltk.download('punkt', './nltk_data')
 
 app = FastAPI()
 
