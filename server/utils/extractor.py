@@ -34,7 +34,7 @@ class KeywordExtractor(ABC):
 @runtime_checkable
 class IYakeExtractor(Protocol):
     @abstractmethod
-    def extract_keywords(self, text: str) -> (List | List[tuple]):
+    def extract_keywords(self, text: str) -> (List):
         pass
 
 

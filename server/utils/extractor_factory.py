@@ -39,7 +39,7 @@ class RakeExtractorFactory(KeywordExtractorFactory):
 
     def create_extractor(self) -> KeywordExtractor:
         return RakeExtractor(
-            Rake(language="spanish")
+            Rake(language="spanish", include_repeated_phrases=False)
         )
 
 

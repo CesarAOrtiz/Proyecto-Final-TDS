@@ -11,6 +11,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import MessageIcon from "@mui/icons-material/Message";
+import Keywords from "../../components/Keywords";
 
 const setimentColor = {
   "positive": "#1cc88a",
@@ -64,6 +65,17 @@ export const List = ({ data, loading, error, ...props }) => {
               />
             </MuiListItem>
 
+            <Box
+              style={{
+                flexGrow: 1,
+                display: "flex",
+                flexDirection: "row-reverse",
+                marginBottom: 16,
+                gap: 10,
+              }}
+            >
+              <Keywords data={d} />
+            </Box>
             <Divider variant="inset" />
           </React.Fragment>
         ))}
