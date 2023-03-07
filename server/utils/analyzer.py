@@ -1,10 +1,17 @@
 from typing import Callable, Optional
 from abc import ABC, abstractmethod
+from os import path
+from nltk import download
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from textblob import TextBlob
 from .analysis_data_structure import Sentence
 from .preprocess_sentence import preprocess_sentence
 from .extractor_factory import KeywordExtractor, IKeywordExtractorFactory, KeywordExtractorFactory
+
+nltk_data_path = path.join(path.dirname(__file__), '../nltk_data')
+
+if not path.exists(f'{nltk_data_path}/sentiment/vader_lexicon.zip'):
+    download('vader_lexicon', nltk_data_path)
 
 
 class SentimentAnalyzer(ABC):

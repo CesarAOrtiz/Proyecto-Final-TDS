@@ -1,0 +1,29 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  # - name: client
+  #   src: client
+  #   engine: react
+  #   primary: true
+  #   presets:
+  #     env:
+  #       - name: REACT_APP_API_URL
+  #         default: ""
+  #       - name: REACT_APP_API_KEY
+  #         default: ""
+  #       - name: REACT_APP_AUTH_DOMAIN
+  #         default: ""
+  #       - name: REACT_APP_PROJECT_ID
+  #         default: ""
+  #       - name: REACT_APP_STORAGE_BUCKET
+  #         default: ""
+  #       - name: REACT_APP_MESSAGING_SENDER_ID
+  #         default: ""
+  #       - name: REACT_APP_APP_ID
+  #         default: ""
+  #       - name: REACT_APP_OPENAI_API_KEY
+  #         default: ""
+  - name: server
+    src: server
+    engine: python3.9
+    primary: true

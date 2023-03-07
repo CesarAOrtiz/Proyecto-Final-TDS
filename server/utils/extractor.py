@@ -1,19 +1,6 @@
-from os import path
 from abc import ABC, abstractmethod
 from typing_extensions import Protocol, runtime_checkable
 from typing import List
-import nltk
-
-nltk_data_path = path.join(path.dirname(__file__), '..\\env\\nltk_data')
-
-if not path.exists(f'{nltk_data_path}/sentiment/vader_lexicon.zip'):
-    nltk.download('vader_lexicon', nltk_data_path)
-
-if not path.exists(f'{nltk_data_path}/corpora/stopwords.zip'):
-    nltk.download('stopwords', nltk_data_path)
-
-if not path.exists(f'{nltk_data_path}/tokenizers/punkt.zip'):
-    nltk.download('punkt', nltk_data_path)
 
 
 class KeywordExtractor(ABC):
