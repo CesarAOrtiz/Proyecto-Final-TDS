@@ -10,7 +10,7 @@ router = APIRouter()
 
 
 @router.get("", description="Get tweets")
-async def get_tweets(query: str):
+async def get_tweets(query: str, ky_extractor: str = 'yake'):
     recent_tweets = await async_client.search_recent_tweets(query=f'{query} -is:retweet',
                                                             max_results=100,
                                                             tweet_fields=[

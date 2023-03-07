@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
+from functools import lru_cache
 import yake
 from rake_nltk import Rake
 from .extractor import KeywordExtractor, YakeExtractor, RakeExtractor
 
 
-class KeywordExtractorFactory(ABC):
+class IKeywordExtractorFactory(ABC):
     """
     Clase creadora abstracta que define el método para crear un objeto del producto KeywordExtractor.
     """
@@ -14,42 +15,33 @@ class KeywordExtractorFactory(ABC):
         pass
 
 
-class YakeExtractorFactory(KeywordExtractorFactory):
-    """
-    Clase creadora concreta que implementa el método para crear un objeto del producto KeywordExtractor
-    usando la implementación de YakeExtractor.
-    """
+class KeywordExtractorFactory(IKeywordExtractorFactory):
 
-    def create_extractor(self) -> KeywordExtractor:
-        return YakeExtractor(
-            yake.KeywordExtractor(
+    @staticmethod
+    @lru_cache(maxsize=32)
+    def create_extractor(extractor_type: str = 'yake') -> KeywordExtractor:
+        if extractor_type == "yake":
+            return YakeExtractor(yake.KeywordExtractor(
                 lan="es",
                 n=3,
                 dedupLim=0.3,
-                top=20,
-            )
-        )
-
-
-class RakeExtractorFactory(KeywordExtractorFactory):
-    """
-    Clase creadora concreta que implementa el método para crear un objeto del producto KeywordExtractor
-    usando la implementación de RakeExtractor.
-    """
-
-    def create_extractor(self) -> KeywordExtractor:
-        return RakeExtractor(
-            Rake(language="spanish", include_repeated_phrases=False)
-        )
+                top=20
+            ))
+        elif extractor_type == "rake":
+            return RakeExtractor(Rake(
+                language="spanish",
+                include_repeated_phrases=False
+            ))
+        else:
+            raise ValueError("Invalid extractor type")
 
 
 if __name__ == "__main__":
     # Ejemplo de uso
-    yake_factory = YakeExtractorFactory()
-    rake_factory = RakeExtractorFactory()
+    factory = KeywordExtractorFactory
 
-    yake_extractor = yake_factory.create_extractor()
-    rake_extractor = rake_factory.create_extractor()
+    yake_extractor = factory.create_extractor('yake')
+    rake_extractor = factory.create_extractor('rake')
 
     text = """Aníbal Garcia Duvergué, Ex aliado del PRM y presidente del Partido de Unidad de Movimientos Independientes, muestran apoyo al próximo presidente, @LeonelFernandez, tras considerar que Luis Abinader ha engañado al pueblo dominicano"""
     yake_keywords = yake_extractor.extract(text)

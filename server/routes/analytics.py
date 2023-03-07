@@ -8,5 +8,5 @@ analyser = VADERAnalyzer()
 
 
 @router.get("", description="Analyze the sentiment of a text")
-async def get_tweets(text: List[str] = Query(..., description="The text to analyze")):
-    return [analyser.analyze(paragraph) for paragraph in text]
+async def get_tweets(text: List[str] = Query(..., description="The text to analyze"), ky_extractor: str = 'yake'):
+    return [analyser.analyze(paragraph, ky_extractor) for paragraph in text]

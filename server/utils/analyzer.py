@@ -4,7 +4,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from textblob import TextBlob
 from .analysis_data_structure import Sentence
 from .preprocess_sentence import preprocess_sentence
-from .extractor_factory import KeywordExtractor, KeywordExtractorFactory, YakeExtractorFactory, RakeExtractorFactory
+from .extractor_factory import KeywordExtractor, IKeywordExtractorFactory, KeywordExtractorFactory
 
 
 class SentimentAnalyzer(ABC):
@@ -12,11 +12,19 @@ class SentimentAnalyzer(ABC):
     Interfaz que define los métodos que deben implementarse para realizar un análisis de sentimiento.
     """
     text_preprocessor: Callable[[str], str]
-    keyword_extractor: KeywordExtractor
+    _keyword_extractor: KeywordExtractor
 
     @abstractmethod
     def analyze(self, text: str) -> Sentence:
-        pass
+        """
+        Analiza el sentimiento del texto de entrada y devuelve un objeto de tipo Sentence.
+
+        Args:
+            text (str): El texto a analizar.
+
+        Returns:
+            Sentence: Un objeto de tipo Sentence que contiene el resultado del análisis de sentimiento.
+        """
 
 
 class VADERAnalyzer(SentimentAnalyzer):
@@ -28,20 +36,45 @@ class VADERAnalyzer(SentimentAnalyzer):
 
     def __init__(self,
                  text_preprocessor: Optional[Callable[[str], str]] = None,
-                 extractor_factory: Optional[KeywordExtractorFactory] = None,
+                 extractor_factory: Optional[IKeywordExtractorFactory] = None,
                  ):
-        self.text_preprocessor = text_preprocessor or preprocess_sentence
-        self.keyword_extractor = extractor_factory.create_extractor(
-        ) if extractor_factory else YakeExtractorFactory().create_extractor()
+        """
+        Inicializa una nueva instancia de VADERAnalyzer.
 
-    def analyze(self, sentence: str) -> Sentence:
+        Args:
+            text_preprocessor (Optional[Callable[[str], str]], optional): Una función para preprocesar el texto de entrada.
+                Si no se proporciona, se utiliza la función preprocess_sentence. Defaults to None.
+            extractor_factory (Optional[IKeywordExtractorFactory], optional): Una fábrica de extractores de palabras clave.
+                Si no se proporciona, se utiliza la fábrica KeywordExtractorFactory para crear un extractor de palabras clave
+                Yake. Defaults to None.
+        """
+        self.text_preprocessor = text_preprocessor or preprocess_sentence
+        self._keyword_extractor = extractor_factory.create_extractor(
+        ) if extractor_factory else KeywordExtractorFactory.create_extractor('yake')
+
+    def analyze(self, sentence: str, ky_extractor: Optional[str] = None) -> Sentence:
+        """
+        Analiza la polaridad de la oración proporcionada y devuelve una instancia de la clase Sentence.
+
+        Args:
+            sentence (str): La oración a analizar.
+            ky_extractor (Optional[str], opcional): El tipo de extractor de palabras clave a utilizar.
+                Si se proporciona, se utilizará en lugar del extractor que se haya establecido en el constructor.
+                Por defecto es None.
+
+        Returns:
+            Una instancia de la clase Sentence con los resultados del análisis.
+        """
         text = self.text_preprocessor(sentence)
         score = SentimentIntensityAnalyzer().polarity_scores(text)
         compound = score['compound']
         sentiment = "negative" if compound <= \
             -0.05 else "positive" if compound >= 0.05 else "neutral"
 
-        keywords = self.keyword_extractor.extract(sentence)
+        if ky_extractor:
+            self._keyword_extractor = KeywordExtractorFactory.create_extractor(
+                ky_extractor)
+        keywords = self._keyword_extractor.extract(sentence)
 
         return Sentence(
             sentiment=sentiment,
