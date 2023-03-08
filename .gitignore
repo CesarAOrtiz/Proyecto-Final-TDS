@@ -117,7 +117,6 @@ ENV/
 
 .db
 
-nltk_data/
 
 
 # IGNORE CLIENT FILES
