@@ -3,7 +3,6 @@ import authRoutes from "./auth/routes";
 import mainRoutes from "./layouts/routes";
 import twitterRoutes from "./twitter/routes";
 import textRoutes from "./text/routes";
-import foldersRoutes from "./folders/routes";
 import usersRoutes from "./users/routes";
 
 export const routes = [
@@ -11,7 +10,6 @@ export const routes = [
   mainRoutes,
   twitterRoutes,
   textRoutes,
-  foldersRoutes,
   usersRoutes,
   {
     path: "*",
