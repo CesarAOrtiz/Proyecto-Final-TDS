@@ -1,3 +1,4 @@
+import os
 from typing import Callable, Optional
 from abc import ABC, abstractmethod
 from os import path
@@ -8,10 +9,14 @@ from .analysis_data_structure import Sentence
 from .preprocess_sentence import preprocess_sentence
 from .extractor_factory import KeywordExtractor, IKeywordExtractorFactory, KeywordExtractorFactory
 
-nltk_data_path = path.join(path.dirname(__file__), '../nltk_data')
+nltk_data_path = path.join(path.dirname(__file__), '..\\nltk_data')
 
 if not path.exists(f'{nltk_data_path}/sentiment/vader_lexicon.zip'):
     download('vader_lexicon', nltk_data_path)
+
+sentiment_intensity_analyzer = SentimentIntensityAnalyzer(
+    lexicon_file=f'file:{nltk_data_path}/sentiment/vader_lexicon.zip/vader_lexicon/vader_lexicon.txt'
+)
 
 
 class SentimentAnalyzer(ABC):
@@ -73,7 +78,7 @@ class VADERAnalyzer(SentimentAnalyzer):
             Una instancia de la clase Sentence con los resultados del análisis.
         """
         text = self.text_preprocessor(sentence)
-        score = SentimentIntensityAnalyzer().polarity_scores(text)
+        score = sentiment_intensity_analyzer.polarity_scores(text)
         compound = score['compound']
         sentiment = "negative" if compound <= \
             -0.05 else "positive" if compound >= 0.05 else "neutral"

@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from tweepy import Response
-from ..utils import async_client
-from ..utils.analyzer import add_tweet_sentiment
+from utils import async_client
+from utils.analyzer import add_tweet_sentiment
 
 router = APIRouter()
 

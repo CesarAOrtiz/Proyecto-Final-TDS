@@ -1,6 +1,6 @@
 from typing import List
 from fastapi import APIRouter, Query
-from ..utils.analyzer import VADERAnalyzer
+from utils.analyzer import VADERAnalyzer
 
 router = APIRouter()
 

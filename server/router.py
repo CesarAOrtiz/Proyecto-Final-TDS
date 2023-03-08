@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from .routes import twitter_router, analytics_router
+from routes import twitter_router, analytics_router
 
 router = APIRouter()
 router.include_router(twitter_router, prefix="/api/twitter", tags=["Twitter"])
