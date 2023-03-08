@@ -1,4 +1,3 @@
-import os
 from typing import Callable, Optional
 from abc import ABC, abstractmethod
 from os import path
@@ -11,8 +10,8 @@ from .extractor_factory import KeywordExtractor, IKeywordExtractorFactory, Keywo
 
 nltk_data_path = path.join(path.dirname(__file__), '..\\nltk_data')
 
-# if not path.exists(f'{nltk_data_path}/sentiment/vader_lexicon.zip'):
-#     download('vader_lexicon', nltk_data_path)
+if not path.exists(f'{nltk_data_path}/sentiment/vader_lexicon.zip'):
+    download('vader_lexicon', nltk_data_path)
 
 sentiment_intensity_analyzer = SentimentIntensityAnalyzer(
     lexicon_file=f'file:{nltk_data_path}/sentiment/vader_lexicon.zip/vader_lexicon/vader_lexicon.txt'

@@ -117,6 +117,8 @@ ENV/
 
 .db
 
+# comentar para poder desplegar en space
+nltk_data/
 
 
 # IGNORE CLIENT FILES
