@@ -4,29 +4,28 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import Send from "@mui/icons-material/Send";
 import openai from "../../openai";
-import dataset from "../dataset";
 import Message from "../components/Message";
+// import dataset from "../dataset";
 
-const SYSTEM = {
-  role: "system",
-  content: `You are a highly intelligent question answering bot. If i ask you a question that is nonsense, trickery, or has no clear answer, you will respond with "I don't understand". Try to respond to the questions in the same language`,
-};
+// const defaultSystemMessage = { role: "system", content: 'You are a chatbot assistant' };
 
-export const Chat = () => {
+export const Chat = ({ system }) => {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([SYSTEM]);
+  const [messages, setMessages] = useState([system]);
   const [isLoading, setIsloading] = useState(false);
 
   const addUserMessage = async () => {
     setMessages((prev) => [...prev, { role: "user", content: input }]);
     setInput("");
 
-    setIsloading(true);
-
+    // setIsloading(true);
     // setTimeout(() => {
     //   setMessages((prev) => [...prev, { role: "assistant", content: "hola" }]);
     //   setIsloading(false);
     // }, 2000);
+
+    setIsloading(true);
+
     const chatCompletion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [...messages, { role: "user", content: input }],
@@ -44,12 +43,18 @@ export const Chat = () => {
 
   return (
     <>
-      <Grid
-        container
-        spacing={2}
-        //  sx={{ height: "calc(100vh - 112px)" }}
-      >
-        <Grid container item xs={12}>
+      <Grid container spacing={2} sx={{ minHeight: "calc(100vh - 112px)" }}>
+        <Grid item xs={12}>
+          {
+            <Grid item xs={12} sx={{ justifyContent: "flex-start", display: "flex" }}>
+              <Message role={"assistant"}>
+                Soy un bot de respuesta a preguntas muy inteligente. Si me haces una pregunta con
+                una respuesta concreta, te daré la respuesta. Si me haces una pregunta que es una
+                tontería, un engaño o no tiene una respuesta clara, no podré responderte.
+              </Message>
+            </Grid>
+          }
+
           {messages
             .filter((x) => x.role === "user" || x.role === "assistant")
             .map((message, index) => (
@@ -66,11 +71,11 @@ export const Chat = () => {
               </Grid>
             ))}
 
-          {/* {isLoading && (
-            <Grid item xs={12} sx={{ justifyContent: "flex-start", display: "flex" }}>
-              <Message role="assistant">Cargando...</Message>
+          {isLoading && (
+            <Grid item xs={12} sx={{ justifyContent: "center", display: "flex" }}>
+              <div className="loader">...</div>
             </Grid>
-          )} */}
+          )}
         </Grid>
 
         <Grid
