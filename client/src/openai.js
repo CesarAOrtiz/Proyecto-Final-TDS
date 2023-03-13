@@ -5,7 +5,7 @@ const configuration = new Configuration({
 });
 
 export const openai = new OpenAIApi(configuration);
-
+export default openai;
 // const completion = await openai.createChatCompletion({
 //   model: "gpt-3.5-turbo",
 //   // replace prompt with messages and set prompt as content with a role.
