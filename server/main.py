@@ -37,5 +37,5 @@ app.add_middleware(
 
 app.include_router(router)
 
-# app.mount("/", StaticFiles(directory=path.abspath("client/build").replace("\\",
-#           "/"), html=True), name="app")
+app.mount("/", StaticFiles(directory=path.abspath("build").replace("\\",
+          "/"), html=True), name="app")
