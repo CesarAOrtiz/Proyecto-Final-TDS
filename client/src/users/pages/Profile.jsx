@@ -38,7 +38,7 @@ const reload = () =>
     showCancelButton: true,
     confirmButtonText: "Aceptar",
     cancelButtonText: "Cancelar",
-    confirmButtonColor: "#992127",
+    confirmButtonColor: "#00ba3c",
     showLoaderOnConfirm: true,
     preConfirm: (password) => {
       return reauthenticate(password)
@@ -143,7 +143,7 @@ export const Profile = () => {
                     title: "Ha ocurrido un error",
                     text: error,
                     icon: "error",
-                    confirmButtonColor: "#992127",
+                    confirmButtonColor: "#00ba3c",
                   });
                 });
               resetForm();
@@ -205,7 +205,7 @@ export const Profile = () => {
                     title: "Ha ocurrido un error",
                     text: error,
                     icon: "error",
-                    confirmButtonColor: "#992127",
+                    confirmButtonColor: "#00ba3c",
                   });
                 });
               resetForm();
@@ -266,7 +266,7 @@ export const Profile = () => {
                     title: "Ha ocurrido un error",
                     text: error,
                     icon: "error",
-                    confirmButtonColor: "#992127",
+                    confirmButtonColor: "#00ba3c",
                   });
                 });
               resetForm();

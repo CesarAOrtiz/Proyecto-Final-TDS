@@ -9,9 +9,9 @@ import Message from "../components/Message";
 
 // const defaultSystemMessage = { role: "system", content: 'You are a chatbot assistant' };
 
-export const Chat = ({ system }) => {
+export const Chat = ({ setup }) => {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([system]);
+  const [messages, setMessages] = useState([{ role: setup.role, content: setup.content }]);
   const [isLoading, setIsloading] = useState(false);
 
   const addUserMessage = async () => {
@@ -47,11 +47,7 @@ export const Chat = ({ system }) => {
         <Grid item xs={12}>
           {
             <Grid item xs={12} sx={{ justifyContent: "flex-start", display: "flex" }}>
-              <Message role={"assistant"}>
-                Soy un bot de respuesta a preguntas muy inteligente. Si me haces una pregunta con
-                una respuesta concreta, te daré la respuesta. Si me haces una pregunta que es una
-                tontería, un engaño o no tiene una respuesta clara, no podré responderte.
-              </Message>
+              <Message role={"assistant"}>{setup.infoMessage}</Message>
             </Grid>
           }
 

@@ -8,7 +8,7 @@ const routes = {
   children: [
     {
       path: "",
-      element: <Navigate to="/twitter" replace />,
+      element: <Navigate to="/text" replace />,
     },
   ],
 };

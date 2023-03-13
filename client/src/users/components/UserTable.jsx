@@ -26,7 +26,7 @@ const deleteAlert = () =>
     title: "¿Seguro que desea cambiar el estado de este usuario?",
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#992127",
+    confirmButtonColor: "#00ba3c",
     confirmButtonText: "Si, cambiar",
     cancelButtonText: "Cancelar",
   });
@@ -69,7 +69,7 @@ const columns = [
                   title: "Ha ocurrido un error",
                   text: error.message,
                   icon: "error",
-                  confirmButtonColor: "#992127",
+                  confirmButtonColor: "#00ba3c",
                 });
               });
           }}

@@ -8,6 +8,8 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import MessageIcon from "@mui/icons-material/Message";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
+import TranslateIcon from "@mui/icons-material/Translate";
+import AssistantIcon from "@mui/icons-material/Assistant";
 import { useAuth } from "../../auth/contexts/AuthContext";
 import Item from "./Item";
 
@@ -20,21 +22,33 @@ const defaultRoutes = [
   // },
   {
     path: "",
-    name: "Twitter",
-    href: "/twitter",
-    Icon: TwitterIcon,
-  },
-  {
-    path: "",
     name: "Texto",
     href: "/text",
     Icon: MessageIcon,
   },
   {
     path: "",
+    name: "Twitter",
+    href: "/twitter",
+    Icon: TwitterIcon,
+  },
+  {
+    path: "",
     name: "Preguntas",
-    href: "/questions",
+    href: "/chat/questions",
     Icon: LiveHelpIcon,
+  },
+  {
+    path: "",
+    name: "Tradución",
+    href: "/chat/translate",
+    Icon: TranslateIcon,
+  },
+  {
+    path: "",
+    name: "Chat Bot",
+    href: "/chat/assistant",
+    Icon: AssistantIcon,
   },
   {
     path: "",

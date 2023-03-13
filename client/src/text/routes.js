@@ -4,7 +4,7 @@ import { Search } from "./pages";
 
 const routes = {
   path: "/text",
-  element: <AuthRouth component={() => <MainLayout path={"/twitter"} />} />,
+  element: <AuthRouth component={() => <MainLayout path={"/text"} />} />,
   children: [
     {
       path: "",

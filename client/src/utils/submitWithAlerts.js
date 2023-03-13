@@ -12,7 +12,7 @@ const confirm = (config = {}) =>
     title: "¿Seguro que desea realizar esta acción?",
     icon: "warning",
     showCancelButton: true,
-    // confirmButtonColor: "#992127",
+    // confirmButtonColor: "#00ba3c",
     confirmButtonText: "Si",
     cancelButtonText: "Cancelar",
     ...config,
@@ -50,7 +50,7 @@ const onError = async (error, config = {}) =>
     title: "Ha ocurrido un error",
     text: errorMessages[error.code] || errorMessages.default,
     icon: "error",
-    // confirmButtonColor: "#992127",
+    // confirmButtonColor: "#00ba3c",
     ...config,
   });
 // setTimeout(() => {
@@ -58,7 +58,7 @@ const onError = async (error, config = {}) =>
 //     title: "Ha ocurrido un error",
 //     text: errorMessages[error.code] || errorMessages.default,
 //     icon: "error",
-//     // confirmButtonColor: "#992127",
+//     // confirmButtonColor: "#00ba3c",
 //     ...config,
 //   });
 // }, 10);
