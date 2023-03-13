@@ -7,6 +7,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 // import TroubleshootIcon from "@mui/icons-material/Troubleshoot";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import MessageIcon from "@mui/icons-material/Message";
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import { useAuth } from "../../auth/contexts/AuthContext";
 import Item from "./Item";
 
@@ -28,6 +29,12 @@ const defaultRoutes = [
     name: "Texto",
     href: "/text",
     Icon: MessageIcon,
+  },
+  {
+    path: "",
+    name: "Preguntas",
+    href: "/questions",
+    Icon: LiveHelpIcon,
   },
   {
     path: "",

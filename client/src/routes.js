@@ -4,6 +4,7 @@ import mainRoutes from "./layouts/routes";
 import twitterRoutes from "./twitter/routes";
 import textRoutes from "./text/routes";
 import usersRoutes from "./users/routes";
+import questionsRoutes from "./questions/routes";
 
 export const routes = [
   authRoutes,
@@ -11,6 +12,7 @@ export const routes = [
   twitterRoutes,
   textRoutes,
   usersRoutes,
+  questionsRoutes,
   {
     path: "*",
     element: <Navigate to="/auth/404" replace />,
