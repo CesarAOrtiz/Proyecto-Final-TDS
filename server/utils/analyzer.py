@@ -1,4 +1,4 @@
-from typing import Callable, Optional
+from typing import Callable, List, Optional
 from abc import ABC, abstractmethod
 from os import path
 from nltk import download
@@ -12,6 +12,9 @@ nltk_data_path = path.join(path.dirname(__file__), '..\\nltk_data')
 
 if not path.exists(f'{nltk_data_path}/sentiment/vader_lexicon.zip'):
     download('vader_lexicon', nltk_data_path)
+
+if not path.exists(f'{nltk_data_path}/corpora/stopwords.zip'):
+    download('stopwords', nltk_data_path)
 
 sentiment_intensity_analyzer = SentimentIntensityAnalyzer(
     lexicon_file=f'file:{nltk_data_path}/sentiment/vader_lexicon.zip/vader_lexicon/vader_lexicon.txt'
@@ -60,8 +63,8 @@ class VADERAnalyzer(SentimentAnalyzer):
                 Yake. Defaults to None.
         """
         self.text_preprocessor = text_preprocessor or preprocess_sentence
-        self._keyword_extractor = extractor_factory.create_extractor(
-        ) if extractor_factory else KeywordExtractorFactory.create_extractor('yake')
+        self._keyword_extractor = extractor_factory.create_extractor() \
+            if extractor_factory else KeywordExtractorFactory.create_extractor('yake')
 
     def analyze(self, sentence: str, ky_extractor: Optional[str] = None) -> Sentence:
         """
@@ -96,6 +99,27 @@ class VADERAnalyzer(SentimentAnalyzer):
             keywords=keywords
             # word_counts=TextBlob(text).word_counts  # type: ignore
         )
+
+    def extract_keywords(self, sentence: str, ky_extractor: Optional[str] = None) -> List[str]:
+        """
+        Extrae las palabras clave de la oración proporcionada y devuelve una instancia de la clase Sentence.
+
+        Args:
+            sentence (str): La oración a analizar.
+            ky_extractor (Optional[str], opcional): El tipo de extractor de palabras clave a utilizar.
+                Si se proporciona, se utilizará en lugar del extractor que se haya establecido en el constructor.
+                Por defecto es None.
+
+        Returns:
+            Una instancia de la clase Sentence con los resultados del análisis.
+        """
+
+        if ky_extractor:
+            self._keyword_extractor = KeywordExtractorFactory.create_extractor(
+                ky_extractor)
+        keywords = self._keyword_extractor.extract(sentence)
+
+        return keywords
 
 
 def add_tweet_sentiment(tweet):
