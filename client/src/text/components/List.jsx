@@ -9,6 +9,7 @@ import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
+import Tooltip from "@mui/material/Tooltip";
 import AlertTitle from "@mui/material/AlertTitle";
 import MessageIcon from "@mui/icons-material/Message";
 import Keywords from "../../components/Keywords";
@@ -17,6 +18,11 @@ const setimentColor = {
   "positive": "#1cc88a",
   "neutral": "#bdbdb",
   "negative": "#e74a3b",
+};
+const setimentText = {
+  "positive": "Positivo",
+  "neutral": "Neutral",
+  "negative": "Negativo",
 };
 
 export const List = ({ data, loading, error, ...props }) => {
@@ -45,9 +51,11 @@ export const List = ({ data, loading, error, ...props }) => {
           <React.Fragment key={i}>
             <MuiListItem alignItems="flex-start">
               <MuiListItemAvatar>
-                <Avatar style={{ background: setimentColor[d.sentiment] }}>
-                  <MessageIcon />
-                </Avatar>
+                <Tooltip title={setimentText[d.sentiment]}>
+                  <Avatar style={{ background: setimentColor[d.sentiment] }}>
+                    <MessageIcon />
+                  </Avatar>
+                </Tooltip>
               </MuiListItemAvatar>
 
               <MuiListItemText

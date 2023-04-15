@@ -16,11 +16,11 @@ import { initialValues, validationSchema } from "../components/userValidationSch
 const config = {
   confirm: {
     title: "¿Seguro que desea crear este usuario?",
-    confirmButtonColor: "#00ba3c",
+    confirmButtonColor: "#1565c0",
     confirmButtonText: "Si, crear",
   },
   success: { title: "Usuario creado" },
-  error: { confirmButtonColor: "#00ba3c" },
+  error: { confirmButtonColor: "#1565c0" },
 };
 
 export function Users(props) {

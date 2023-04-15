@@ -40,7 +40,7 @@ const defaultRoutes = [
   },
   {
     path: "",
-    name: "Tradución",
+    name: "Traducción",
     href: "/chat/translate",
     Icon: TranslateIcon,
   },

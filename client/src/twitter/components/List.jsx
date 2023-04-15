@@ -9,6 +9,7 @@ import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
+import Tooltip from "@mui/material/Tooltip";
 import AlertTitle from "@mui/material/AlertTitle";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Grid from "@mui/material/Grid";
@@ -19,7 +20,11 @@ const setimentColor = {
   "neutral": "#bdbdb",
   "negative": "#e74a3b",
 };
-
+const setimentText = {
+  "positive": "Positivo",
+  "neutral": "Neutral",
+  "negative": "Negativo",
+};
 export const List = ({ data, loading, error, ...props }) => {
   if (loading) {
     return (
@@ -48,9 +53,11 @@ export const List = ({ data, loading, error, ...props }) => {
               <Grid item xs={12}>
                 <MuiListItem alignItems="flex-start">
                   <MuiListItemAvatar>
-                    <Avatar style={{ background: setimentColor[d.tweet.sentiment] }}>
-                      <TwitterIcon />
-                    </Avatar>
+                    <Tooltip title={setimentText[d.tweet.sentiment]}>
+                      <Avatar style={{ background: setimentColor[d.tweet.sentiment] }}>
+                        <TwitterIcon />
+                      </Avatar>
+                    </Tooltip>
                   </MuiListItemAvatar>
                   <MuiListItemText
                     primary={d.user}
